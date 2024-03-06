@@ -1,0 +1,118 @@
+<table *ngIf="!isLoading" class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Destination</th>
+    <th scope="col">Type</th>
+    <th scope="col">Note</th>
+    <th scope="col">Action</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let voyage of voyages">
+    <th scope="row">
+    </th>
+				<td>
+          {{voyage.destination}}
+        </td>
+        <td>
+          {{voyage.type}}
+        </td>
+				<td>
+          {{voyage.nbStar}}
+        </td>
+    <td>
+      <button class="btn btn-success mx-2" [routerLink]="['/admin/edit/', voyage.id]">
+        <svg width="23" height="23" fill="none" stroke="#b8f5c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="m17.069 5.875-12.99 13.02L3 21.004l2.109-1.078 13.02-12.99-1.06-1.061Z"></path>
+          <path d="m19.72 3.22-1.06 1.06 1.06 1.06 1.06-1.06a.75.75 0 0 0 0-1.06v0a.75.75 0 0 0-1.06 0v0Z"></path>
+        </svg>
+      </button>
+      <button class="btn btn-danger mx-2"  (click)="deleteCategoryModal('500ms', '500ms', voyage.id)">
+        <svg width="27" height="27" fill="#f5b8b8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.25 4.5h-4.5V3.375A1.875 1.875 0 0 0 13.875 1.5h-3.75A1.875 1.875 0 0 0 8.25 3.375V4.5h-4.5a.75.75 0 0 0 0 1.5h.797l.89 14.293c.067 1.259 1.032 2.207 2.25 2.207h8.625c1.225 0 2.17-.927 2.25-2.203L19.453 6h.797a.75.75 0 1 0 0-1.5Zm-11.223 15H9a.75.75 0 0 1-.75-.723l-.375-10.5a.75.75 0 0 1 1.5-.054l.375 10.5a.75.75 0 0 1-.723.777Zm3.723-.75a.75.75 0 1 1-1.5 0V8.25a.75.75 0 1 1 1.5 0v10.5Zm1.5-14.25h-4.5V3.375A.37.37 0 0 1 10.125 3h3.75a.371.371 0 0 1 .375.375V4.5Zm1.5 14.277a.75.75 0 0 1-.75.723h-.027a.75.75 0 0 1-.723-.777l.375-10.5a.75.75 0 0 1 1.5.054l-.375 10.5Z"></path>
+        </svg>
+      </button>
+      <button class="btn btn-danger mx-2"  [routerLink]="['/voyage/', voyage.id]">
+      <svg width="27" height="27" fill="#fcff2e" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-7 5a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z" clip-rule="evenodd"></path>
+        <path fill-rule="evenodd" d="M13.793 13.793a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1-1.414 1.414l-4.5-4.5a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path>
+      </svg>
+      </button>
+    </td>
+			</tr>
+
+  </tbody>
+</table>
+
+<div class="d-flex flex-column align-items-center">
+  <div *ngIf="isLoading" class="loader"><svg class="pl" viewBox="0 0 160 160" width="160px" height="160px" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#000"></stop>
+        <stop offset="100%" stop-color="#fff"></stop>
+      </linearGradient>
+      <mask id="mask1">
+        <rect x="0" y="0" width="160" height="160" fill="url(#grad)"></rect>
+      </mask>
+      <mask id="mask2">
+        <rect x="28" y="28" width="104" height="104" fill="url(#grad)"></rect>
+      </mask>
+    </defs>
+
+    <g>
+      <g class="pl__ring-rotate">
+        <circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(223,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
+      </g>
+    </g>
+    <g mask="url(#mask1)">
+      <g class="pl__ring-rotate">
+        <circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(193,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
+      </g>
+    </g>
+
+    <g>
+      <g stroke-width="4" stroke-dasharray="12 12" stroke-dashoffset="12" stroke-linecap="round" transform="translate(80,80)">
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-135,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-90,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-45,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(0,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(45,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(90,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(135,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(180,0,0) translate(0,40)"></polyline>
+      </g>
+    </g>
+    <g mask="url(#mask1)">
+      <g stroke-width="4" stroke-dasharray="12 12" stroke-dashoffset="12" stroke-linecap="round" transform="translate(80,80)">
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-135,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-90,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-45,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(0,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(45,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(90,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(135,0,0) translate(0,40)"></polyline>
+        <polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(180,0,0) translate(0,40)"></polyline>
+      </g>
+    </g>
+
+    <g>
+      <g transform="translate(64,28)">
+        <g class="pl__arrows" transform="rotate(45,16,52)">
+          <path fill="hsl(3,90%,55%)" d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"></path>
+          <path fill="hsl(223,10%,90%)" d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"></path>
+        </g>
+      </g>
+    </g>
+    <g mask="url(#mask2)">
+      <g transform="translate(64,28)">
+        <g class="pl__arrows" transform="rotate(45,16,52)">
+          <path fill="hsl(333,90%,55%)" d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"></path>
+          <path fill="hsl(223,90%,80%)" d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"></path>
+        </g>
+      </g>
+    </g>
+  </svg>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+
+<mat-card class="mt-5"  *ngIf="!isLoading" >
+  <mat-card-title>Connexion</mat-card-title>
+  <mat-card-content>
+    <form #formLogin="ngForm" (submit)="loginForm()" >
+      <p>
+        <mat-form-field>
+          <input required #username="ngModel" name="email" [(ngModel)]="authRequest.username" type="text" matInput placeholder="username">
+          <mat-error *ngIf="!username.valid" >L'username est requis</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input required #password="ngModel" name="password" [(ngModel)]="authRequest.password" type="password" matInput placeholder="Password">
+          <mat-error *ngIf="!password.valid" >Le mot de passe est requis</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p  *ngIf="error !=''" class="error">
+        {{error}}
+      </p>
+
+      <div class="button">
+        <button [disabled]="!formLogin.valid"  mat-raised-button type="submit" mat-button>Connexion</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
